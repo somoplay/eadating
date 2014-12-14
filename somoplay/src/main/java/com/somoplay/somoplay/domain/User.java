@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "user")
 public class User {
-
+//test
 	private int id;
 	private String userName;
 	private byte gender;
