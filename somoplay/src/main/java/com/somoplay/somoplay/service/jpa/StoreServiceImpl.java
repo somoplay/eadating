@@ -21,20 +21,20 @@ import com.somoplay.somoplay.service.StoreService;
 public class StoreServiceImpl implements StoreService {
 	
 	@Autowired
-	private StoreRepository entryRepository;
+	private StoreRepository storeRepository;
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
 	@Transactional(readOnly=true)
 	public List<Store> findAll() {
-		return Lists.newArrayList(entryRepository.findAll());
+		return Lists.newArrayList(storeRepository.findAll());
 	}
 
 	@Override
 	@Transactional(readOnly=true)
 	public Store findById(Long id) {
-		return entryRepository.findOne(id);
+		return storeRepository.findOne(id);
 	}
 
 	@Transactional(readOnly=true)
@@ -62,12 +62,12 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public void delete(Store entry) {
-		entryRepository.delete(entry);
+	public void delete(Store store) {
+		storeRepository.delete(store);
 	}
 
 	@Override
-	public Store save(Store entry) {
+	public Store save(Store store) {
 		// TODO Auto-generated method stub
 		return null;
 	}

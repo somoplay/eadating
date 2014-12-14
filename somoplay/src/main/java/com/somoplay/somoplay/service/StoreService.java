@@ -18,8 +18,8 @@ public interface StoreService {
 	
 	public List<Store> findByDistance(Integer content);
 		
-	public Store save(Store entry);
+	public Store save(Store store);
 	
-	public void delete(Store entry);
+	public void delete(Store store);
 
 }

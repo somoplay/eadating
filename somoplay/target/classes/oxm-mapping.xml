@@ -1,49 +1,29 @@
 <mapping>
-
-    <class name="com.apress.prospring3.springblog.domain.Entries">
-        <field name="entries" type="com.apress.prospring3.springblog.domain.Entry" collection="arraylist">
-            <bind-xml name="entry"/>
+    <class name="com.somoplay.somoplay.domain.Stores">
+        <field name="stores" type="com.somoplay.somoplay.domain.Store" collection="arraylist">
+            <bind-xml name="store"/>
         </field>    
     </class>
 
-    <class name="com.apress.prospring3.springblog.domain.Entry" identity="id">
+    <class name="com.somoplay.somoplay.domain.Store" identity="id">
     
-        <map-to xml="entry" />
+        <map-to xml="store" />
         
         <field name="id" type="long">
             <bind-xml name="id" node="element"/>
+        </field>
+        <field name="active" type="int">
+            <bind-xml name="active" node="element"/>
+        </field>
+        <field name="priority" type="int">
+            <bind-xml name="priority" node="element"/>
         </field>             
-        <field name="subject" type="string">
-            <bind-xml name="subject" node="element" />
+        <field name="nameEn" type="string">
+            <bind-xml name="nameEn" node="element" />
         </field>
-        <field name="categoryId" type="string">
-            <bind-xml name="category" node="element" />
-        </field>
-        <field name="subCategoryId" type="string">
-            <bind-xml name="subCategory" node="element" />
-        </field>                
-        <field name="body" type="string">
-            <bind-xml name="body" node="element" />
-        </field>         
-        <field name="createdDate" type="string" handler="dateHandler">
-            <bind-xml name="postDate" node="element" />
-        </field> 
-        <field name="createdBy" type="string">
-            <bind-xml name="postBy" node="element" />
-        </field>
-        <field name="lastModifiedDate" type="string" handler="dateHandler">
-            <bind-xml name="lastModifiedDate" node="element" />
-        </field> 
-        <field name="lastModifiedBy" type="string">
-            <bind-xml name="lastModifiedBy" node="element" />
-        </field>                  
-        <field name="version" type="integer">
-            <bind-xml name="version" node="element" />
-        </field>                 
-    
     </class>
     
-    <field-handler name="dateHandler" class="com.apress.prospring3.springblog.xml.handler.DateTimeFieldHandler">
+    <field-handler name="dateHandler" class="com.somoplay.somoplay.xml.handler.DateTimeFieldHandler">
         <param name="date-format" value="yyyy-MM-dd"/>
     </field-handler>        
 </mapping>
