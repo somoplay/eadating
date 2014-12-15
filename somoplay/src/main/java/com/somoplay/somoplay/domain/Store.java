@@ -32,8 +32,6 @@ import org.hibernate.envers.Audited;
 
 public class Store implements Serializable {
 	
-	//asdfasdfasdf
-	
 	private static final long serialVersionUID = -4756711680529310853L;
 	
 	private Long id;
