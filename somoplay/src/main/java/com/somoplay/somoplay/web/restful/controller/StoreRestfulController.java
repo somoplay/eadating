@@ -10,6 +10,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,9 @@ public class StoreRestfulController {
 		JsonFactory f = new JsonFactory();
 		OutputStream out = new ByteArrayOutputStream();
 		JsonGenerator g = f.createJsonGenerator(out);
+		
+		JSONArray storeArray = new JSONArray();
+		 
 		for ( Store store: stores ) {
 		   g.writeStartObject();
 		   g.writeStringField("store_id", store.getId().toString());
@@ -56,16 +61,25 @@ public class StoreRestfulController {
 //		   g.writeStringField("gender", "male");
 //		   g.writeBooleanField("verified", false);
 		   g.writeEndObject();
+		   
+		   JSONObject storeObject = new JSONObject();
+		   storeObject.put("store_id", store.getId().toString());
+		   storeObject.put("nameEn",  store.getNameEn());
+		   storeArray.put(storeObject);
+		   
 		}
 		   g.close(); // important: will force flushing of output, close underlying output stream
 
-		 System.out.print(out.toString());
-
-
+		 //System.out.print(out.toString());
+		 
+		 
 		
 //		JsonView.Render(user, response);
 //		System.out.println("Recieved message: " + message);
-		return out.toString();
+		//return out.toString();
+		   
+		   return storeArray.toString();
+		
 		//return new Stores(storeService.findAll());
 	}
 	
