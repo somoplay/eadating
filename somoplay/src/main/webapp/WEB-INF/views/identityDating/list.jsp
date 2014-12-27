@@ -22,7 +22,7 @@ list entries
 
 <c:forEach var="ele" items="${entries}"> 
 
-<P>Id:${ele.id} || Name:${ele.displayName} || Signature:${ele.signature} || location: ${ele.location} ||  introduction: ${ele.introduction} || perfect_match:${ele.perfectMatch} || ideal_date:${ele.idealDate} 
+<P>Id:${ele.id} || gender:${ele.user.gender} ||birthday :${ele.user.birthday} || Name:${ele.displayName} || Signature:${ele.signature} || location: ${ele.location} ||  introduction: ${ele.introduction} || perfect_match:${ele.perfectMatch} || ideal_date:${ele.idealDate} 
 
 
 <c:if test="${empty ele.images}"><br/>No Images</c:if>
