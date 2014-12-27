@@ -17,9 +17,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ForeignKey;
+import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 
 @Entity
 @Audited
@@ -35,10 +39,14 @@ public class IdentityDating implements Serializable {
 	 */
 	private static final long serialVersionUID = 8350766794118687952L;// yao?
 
+	//private static final RelationTargetAuditMode NOT_AUDITED = null;
+
 	private Long id;
-	private Integer userId;
+	//private Integer userId;
 	private Integer deleted;
-	private Date created;
+	private Date deletedTs;
+	private Date updatedTs;
+	private Date createdTs;
 
 	private String displayName;
 	private String signature;
@@ -66,7 +74,12 @@ public class IdentityDating implements Serializable {
 	private String idealDate;
 	private Set<Images> images;
 	//private Set<User> user;
+ 
+	
 
+	private User user;
+
+	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	// (strategy=GenerationType.AUTO)//auto increased main key
@@ -78,7 +91,7 @@ public class IdentityDating implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+/*
 	@Column(name = "user_id")
 	public Integer getUserId() {
 		return userId;
@@ -87,7 +100,7 @@ public class IdentityDating implements Serializable {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-
+*/
 	@Column(name = "deleted")
 	public Integer getDeleted() {
 		return deleted;
@@ -97,13 +110,34 @@ public class IdentityDating implements Serializable {
 		this.deleted = deleted;
 	}
 
-	@Column(name = "created")
-	public Date getCreated() {
-		return created;
+	@Column(name = "deleted_ts")
+	public Date getDeletedTs() {
+		return deletedTs;
 	}
 
-	public void setCreated(Date created) {
-		this.created = created;
+	public void setDeletedTs(Date deletedTs) {
+		this.deletedTs = deletedTs;
+	}
+
+	
+	@Column(name = "updated_ts")
+	public Date getUpdatedTs() {
+		return updatedTs;
+	}
+
+	public void setUpdatedTs(Date updatedTs) {
+		this.updatedTs = updatedTs;
+	}
+
+	
+	
+	@Column(name = "created_ts")
+	public Date getCreatedTs() {
+		return createdTs;
+	}
+
+	public void setCreatedTs(Date createdTs) {
+		this.createdTs = createdTs;
 	}
 
 	@Column(name = "display_name")
@@ -306,6 +340,7 @@ public class IdentityDating implements Serializable {
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "ELEMENT_ID")
+	@Where(clause = "type = 1")
 	public Set<Images> getImages() {
 		return images;
 	}
@@ -313,6 +348,25 @@ public class IdentityDating implements Serializable {
 	public void setImages(Set<Images> images) {
 		this.images = images;
 	}
+	
+	//@OneToOne//(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	//@JoinColumn(name = "id")
+	//@ForeignKey(name = "user_id")
+    //@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+	 
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	 
+
 /*
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "ELEMENT_ID")
