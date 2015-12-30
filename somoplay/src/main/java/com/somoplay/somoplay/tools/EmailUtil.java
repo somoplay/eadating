@@ -1,4 +1,4 @@
-package com.somoplay.somoplay.tools;
+﻿package com.somoplay.somoplay.tools;
 
 import java.util.Date;
 import java.util.Properties;
@@ -13,7 +13,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.stereotype.Component;
-
+//
 @Component
 public class EmailUtil {
 	
