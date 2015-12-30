@@ -3,7 +3,7 @@ package com.somoplay.somoplay.service;
 import java.util.List;
 
 import com.somoplay.somoplay.domain.Store;
-
+/*  */
 public interface StoreService {
 	
 	public List<Store> findAll();
