@@ -28,7 +28,7 @@ public class UsersVerifyServiceImpl implements UsersVerifyService {
 		return usersVerifyRepository.findByEmail(email);
 	};
 
-	
+	//
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void save(UserVerify usersverify){

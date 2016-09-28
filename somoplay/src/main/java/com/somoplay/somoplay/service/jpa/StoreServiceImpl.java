@@ -19,7 +19,7 @@ import com.somoplay.somoplay.service.StoreService;
 @Repository
 @Transactional
 public class StoreServiceImpl implements StoreService {
-	
+	//
 	@Autowired
 	private StoreRepository storeRepository;
 	@PersistenceContext
